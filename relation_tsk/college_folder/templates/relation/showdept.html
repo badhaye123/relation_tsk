@@ -1,0 +1,44 @@
+{% extends 'relation/base.html' %}
+{% block content %}
+<div class="container">
+<br>
+    <br>
+<table class="table table-secondary" >
+    <tr>
+        <th>Department_name</th>
+    </tr>
+    {% for i in records %}
+    <tr>
+        <td>{{i.Dept_name}}</td>
+        <td>
+            <a href="{% url 'updatedept' i.id %}">
+                <button class="btn btn-info ">Update</button>
+            </a>
+        </td>
+
+        <td>
+            <a href="{% url 'deletedept' i.id %}">
+                <button class="btn btn-danger">Delete</button>
+            </a>
+        </td>
+
+        <td>
+            <a href="{% url 'showdeptstud' i.id %}">
+                <button class="btn btn-primary">Show Students</button>
+            </a>
+        </td>
+        <td>
+            <a href="{% url 'showdeptlect' i.id %}">
+                <button class="btn btn-success">Show Lecturers</button>
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+    <br>
+    <br>
+    <a href="{% url 'deptadd' %}">
+        <button class="btn btn-success">Add Department</button>
+    </a>
+</div>
+{% endblock %}

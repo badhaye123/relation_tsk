@@ -1,0 +1,57 @@
+{% extends 'relation/base.html' %}
+{% block content %}
+<div class="container">
+    {% if record|length < 1 %}
+    <h3>No match Found for student </h3>
+    {% else %}
+    <h3>Student Information </h3>
+    <table class="table table-secondary">
+        <tr>
+            <th>Name</th>
+            <th>DOB</th>
+            <th>Email</th>
+            <th>Department</th>
+        </tr>
+        {% for i in record %}
+        <tr>
+            <td>{{i.Name}}</td>
+            <td>{{i.DOB}}</td>
+            <td>{{i.Email}}</td>
+            <td>{{i.Dept_name}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</div>
+
+<div class="container">
+    {% if recordlect|length < 1 %}
+    <h3>No match Found for lecturer </h3>
+    {% else %}
+    <h3>Lecturer Information</h3>
+    <table class="table table-secondary">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Department</th>
+        </tr>
+        {% for i in recordlect %}
+        <tr>
+            <td>{{i.lect_Name}}</td>
+            <td>{{i.Email}}</td>
+            <td>{% for j in i.Dept_name.all %}
+                    {{j}}
+                {% endfor %}
+            </td></tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+    <br>
+    <br>
+</div>
+<div class="container">
+    <a href="{% url 'search' %}">
+<input type="submit" value="Back" class="btn btn-success">
+    </a>
+</div>
+{% endblock %}

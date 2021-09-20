@@ -1,0 +1,42 @@
+{% extends 'relation/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+    <br>
+    <br>
+    <table class="table table-secondary">
+        <tr>
+            <th>Name</th>
+            <th>DOB</th>
+            <th>Email</th>
+            <th>dept</th>
+
+        </tr>
+        {% for i in records %}
+        <tr>
+            <td>{{i.Name}}</td>
+            <td>{{i.DOB}}</td>
+            <td>{{i.Email}}</td>
+            <td>{{i.Dept_name}}</td>
+
+        <td>
+            <a href="{% url 'updatestud' i.id %}">
+                <button class="btn btn-info ">Update</button>
+            </a>
+        </td>
+
+        <td>
+            <a href="{% url 'deletestud' i.id %}">
+                <button class="btn btn-danger">Delete</button>
+            </a>
+        </td>
+        </tr>
+        {% endfor %}
+    </table>
+<br>
+<a href="{% url 'studadd' %}">
+        <button class="btn btn-success">Add Student</button>
+    </a>
+
+    </div>
+        {% endblock %}
